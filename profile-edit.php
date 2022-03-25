@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // update set name="$name", password="$pasword" where id="$id"
     $name = $_POST['name'];
     $password = $_POST['password'];
+    $id = $_POST['id'];
 
     if(! $name) {
         $errors['name'] = 'The name is required.';
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if(count($errors) == 0) {
-        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+        $sql ="UPDATE users SET  `name`='$name', `password`='$password' WHERE `id`='$id'";
         $result = mysqli_query($conn, $sql);
         if($result) {
             redirect('login.php');
